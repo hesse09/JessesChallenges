@@ -88,4 +88,6 @@ while True:
         print(f"{clr}{data['status']:<10} | Latency: {data['Packet Latency']:<8} | P: {data['Passed Packets']:<5} T: {data['Throttled Packets']:<5} D: {data['Dropped Packets']:<5}{OutputColors.Reset}")
     except KeyboardInterrupt:
         print(f"\n{OutputColors.Reset}Ending...")
+        print(f"FINAL RESULTS: P: {data['Passed Packets']:<5} T: {data['Throttled Packets']:<5} D: {data['Dropped Packets']:<5}{OutputColors.Reset}")
+  
         break
