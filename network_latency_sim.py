@@ -6,6 +6,12 @@ passed = 0
 throttled = 0
 total = 0
 
+class OutputColors:
+    Red = "\033[91m"
+    Green = "\033[92m"
+    Yellow = "\033[93m"
+    Reset = "\033[0m"
+
 def network_simulation()-> int:
     if random.random() < .5:
         return random.randrange(0, 100)
@@ -41,7 +47,15 @@ def check_for_lag(latency: int)-> dict:
 while True:
     try:
         num = network_simulation()
-        print(check_for_lag(num))
+        data = check_for_lag(num)
+        if num <= 100:
+            clr = OutputColors.Green
+        elif num <= 300:
+            clr = OutputColors.Yellow
+        else:
+            clr = OutputColors.Red
+            
+        print(f"{clr}{data}{OutputColors.Reset}")
     except KeyboardInterrupt:
-        print("Ending...")
+        print(f"\n{OutputColors.Reset}Ending...")
         break
