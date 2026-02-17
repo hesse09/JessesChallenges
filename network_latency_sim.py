@@ -38,6 +38,11 @@ while p == True:
     p = False
     
 def network_simulation()-> int:
+    if wifiSpeed < .2:
+        if random.random() < .8:
+            return random.randrange(250, 500)
+        else:
+            return random.randrange(0, 150)
     if random.random() < wifiSpeed:
         return random.randrange(0, 100)
     else:
