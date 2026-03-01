@@ -1,0 +1,82 @@
+#My first AI, ChattyMc
+#this code was made with some know how help from Claude// 100% written by me
+import numpy as np
+
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+
+def dot_product(a, b):
+
+    return np.dot(a, b)
+
+
+def magnitude(a):
+
+    return np.linalg.norm(a)
+
+
+def softmax(x):
+
+    return np.exp(x) / np.sum(np.exp(x))
+
+
+def get_embedding(word):
+
+    return embeddings[vocab.index(word)]
+
+
+def attention(query_word):
+
+    query_vector = get_embedding(query_word)
+
+    scores = []
+    for word in vocab:
+        word_vector = get_embedding(word)
+        score = dot_product(query_vector, word_vector)
+        scores.append(score)
+
+    weights = softmax(np.array(scores))
+
+    return weights
+
+
+vocab = [
+    "the",
+    "cat",
+    "sat",
+    "on",
+    "mat",
+    "dog",
+    "ran",
+    "fast",
+    "slow",
+    "big",
+    "small",
+    "red",
+    "blue",
+    "king",
+    "queen",
+    "food",
+    "pizza",
+    "hot",
+    "cold",
+    "good",
+]
+
+vocab_size = 20
+embed_size = 8
+
+
+embeddings = np.random.randn(vocab_size, embed_size)
+
+
+message = str(input("Enter a message: "))
+
+weights = attention(message)
+
+word_weights = list(zip(vocab, weights))
+word_weights.sort(key=lambda x: x[1], reverse=True)
+
+for word, weight in word_weights[:5]:
+    print(f"  {word}: {weight:.4f}")
