@@ -17,10 +17,9 @@ EPOCHS = 4000
 FINAL LOSS = ~2.93
 
 ## Chatty MC Series
+- Chatty MC 160     → No attention, nweighted list proximity
 - Chatty MC 800     → Single head attention, no training
-- Chatty MC 2,616   → Multi-head attention, backpropagation ✅ (you are here)
-- Chatty MC 5,000   → Coming soon
-- Chatty MC 22,000  → Full sentence generation (planned)
+- Chatty MC 2,616   → Multi-head attention, backpropagation 
 
 ## How to Run
 pip install numpy
