@@ -1,0 +1,87 @@
+# ============================================================
+# CHATTY MC - 800 PARAMETERS
+# THIS MODEL TAKES ONE WORD AND RELATES IT TO THE CLOSEST ONE
+# USES SINGLE HEAD ATTENTION WITH Q, K, V MATRICES
+# NO TRAINING - RANDOM WEIGHTED AUTO COMPLETION
+# ============================================================
+import numpy as np
+
+vocab = [
+    "cool",
+    "king",
+    "goat",
+    "fire",
+    "legend",
+    "champion",
+    "elite",
+    "supreme",
+    "loser",
+    "weak",
+    "mid",
+    "trash",
+    "bad",
+    "lame",
+    "boring",
+    "slow",
+    "fast",
+    "smart",
+    "brave",
+    "great",
+]
+
+vocab_size = 20
+embed_size = 8
+
+
+embeddings = np.random.randn(vocab_size, embed_size)
+Q = np.random.randn(embed_size, embed_size)
+K = np.random.randn(embed_size, embed_size)
+V = np.random.randn(embed_size, embed_size)
+FF = np.random.randn(embed_size, 56)
+
+
+def get_embeddings(word: str):
+    return embeddings[vocab.index(word)]
+
+
+def softmax(x):
+    return np.exp(x) / np.sum(np.exp(x))
+
+
+def attention(Qword: str):
+    raw = get_embeddings(Qword)
+    query = raw @ Q
+
+    scores = []
+    for word in vocab:
+        word_key = get_embeddings(word) @ K
+        score = np.dot(query, word_key)
+        scores.append(score)
+
+    weights = softmax(np.array(scores))
+    output = np.zeros(embed_size)
+    for i, word in enumerate(vocab):
+        word_value = get_embeddings(word) @ V
+        output += weights[i] * word_value
+
+    final = softmax(output @ FF)
+    best_index = np.argmax(final[:vocab_size])
+    best_word = vocab[best_index]
+
+    if best_word == Qword:
+        final[best_index] = -999
+        best_index = np.argmax(final[:vocab_size])
+        best_word = vocab[best_index]
+
+    return best_word
+
+
+while True:
+    print("Welcome to ChattyMC!\n Hit CRTL+C to exit any time!")
+    try:
+        request = str(input("YOU:"))
+        output = attention(request)
+        print("CHATTYMC:", output)
+    except KeyboardInterrupt:
+        print("Exiting Chatty MC!")
+        exit()
