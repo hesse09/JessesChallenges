@@ -27,7 +27,31 @@ def crawl(cleaned_docs: dict) -> dict:
     return index
 
 
+def getQuery(search: str, index: dict) -> list:
+    result: list = []
+    print("ran")
+    tokens = search.split(" ")
+    for t in tokens:
+        if t in index:
+            for doc in index[t]:
+                result.append("Doc %d" % doc)
+    return result
+
+
 cleaned = sanitize(documents)
 final = crawl(cleaned)
-
-print(final)
+print("Welcome to the web!\n Crtl+C to exit\n\n\n")
+while True:
+    try:
+        try:
+            userSearch = str(input("What would you like to search?:"))
+            result = getQuery(userSearch, final)
+            print(result)
+            continue
+        except Exception as e:
+            print("Please enter a valid string.", e)
+            continue
+    except KeyboardInterrupt:
+        pass
+    finally:
+        exit()
