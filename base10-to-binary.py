@@ -6,7 +6,7 @@
 userNum: int = 0
 #HELPERS
 def binary_conversion(num: int)-> tuple[bool, str]:
-    if num < 0:
+    if num <= 0:
         return (False, "Enter a positive number")
     final: str = ""
     while num > 0:
@@ -21,5 +21,5 @@ userNum = int(input())
 success, binary = binary_conversion(userNum)
 if not success:
     print("Error: %s!" % binary)
-    
-print("The value of %d in binary is %s!" % (userNum, binary))
+else:
+     print("The value of %d in binary is %s!" % (userNum, binary))   
