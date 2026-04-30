@@ -1,5 +1,8 @@
 ######################################################
-#  Your info here
+# Jesse France
+# 4/30/26
+# EffectOnHandwashing.py
+# Checks if handwashing lowered deaths in childbirth %
 ######################################################
 # Dr. Ignaz Semmelweis was a Hungarian physician born in 1818 and active at the Vienna General Hospital.
 # in the early 1840s at the Vienna General Hospital as many as 10% of the women giving birth were dying.
