@@ -1,0 +1,12 @@
+Coffee,5
+Keyboard,4
+Coffee,4
+Monitor,5
+Mouse,3
+Coffee,5
+Keyboard,5
+Notebook,2
+Monitor,4
+Mouse,4
+Tablet,5
+Tablet,4
