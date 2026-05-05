@@ -1,0 +1,10 @@
+Jordan,Coffee,24.99
+Casey,Keyboard,89.50
+Morgan,Coffee,24.99
+Riley,Monitor,179.99
+Cameron,Mouse,29.99
+Jordan,Notebook,4.99
+Morgan,Keyboard,89.50
+Parker,Coffee,24.99
+Avery,Mouse,29.99
+Casey,Monitor,179.99
